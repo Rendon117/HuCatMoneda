@@ -1,0 +1,112 @@
+<div class="container">
+  <mat-card class="example-card" appearance="outlined">
+    <mat-card-header>
+      <mat-card-title class="title-header">
+        Lista de Monedas
+      </mat-card-title>
+    </mat-card-header>
+
+    <!-- Sección de búsqueda por NumCia -->
+    <div class="search-section">
+      <h3 class="section-title">Buscar por NumCia</h3>
+      <div class="search-fields">
+        <mat-form-field appearance="fill" class="search-input">
+          <mat-label>NumCia</mat-label>
+          <input matInput [(ngModel)]="numCia" />
+        </mat-form-field>
+        <button mat-raised-button color="primary"  (click)="buscarPorNumCia()">
+          <mat-icon>search</mat-icon> Buscar
+        </button>
+      </div>
+    </div>
+
+    <!-- Búsqueda por Parámetros -->
+    <div class="search-section">
+      <h3 class="section-title">Buscar por Parámetros</h3>
+      <div class="search-fields flex-container">
+        <div *ngFor="let key of ['claveMoneda', 'descripcion', 'simbolo', 'abreviacion', 'monedaCorriente', 'status']">
+          <mat-form-field appearance="fill" class="search-input">
+            <mat-label>{{ key | titlecase }}</mat-label>
+            <input matInput [(ngModel)]="parametros[key]" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="button-center">
+        <button mat-raised-button color="accent"  (click)="buscarPorParametros()">
+          <mat-icon>search</mat-icon> Buscar
+        </button>
+      </div>
+    </div>
+
+    <!-- Botón para agregar nueva moneda -->
+    <div class="button-center">
+      <button mat-raised-button class="btn-verde" (click)="guardar()">
+        <mat-icon>add</mat-icon> Nueva Moneda
+      </button>
+    </div>
+
+    <mat-card-content>
+      <!-- Tabla de monedas -->
+      <div class="table-container">
+        <table mat-table [dataSource]="monedas" class="mat-elevation-z8 styled-table">
+          <!-- Definición de las columnas -->
+          <ng-container matColumnDef="numCia">
+            <th mat-header-cell *matHeaderCellDef>#</th>
+            <td mat-cell *matCellDef="let element">{{ element.numCia }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="claveMoneda">
+            <th mat-header-cell *matHeaderCellDef>Clave Moneda</th>
+            <td mat-cell *matCellDef="let element">{{ element.claveMoneda }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef>Descripción</th>
+            <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="simbolo">
+            <th mat-header-cell *matHeaderCellDef>Símbolo</th>
+            <td mat-cell *matCellDef="let element">{{ element.simbolo }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="abreviacion">
+            <th mat-header-cell *matHeaderCellDef>Abreviación</th>
+            <td mat-cell *matCellDef="let element">{{ element.abreviacion }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="monedaCorriente">
+            <th mat-header-cell *matHeaderCellDef>Moneda Corriente</th>
+            <td mat-cell *matCellDef="let element">{{ element.monedaCorriente }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="editar">
+            <th mat-header-cell *matHeaderCellDef>Editar</th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="accent" class="btn-amarillo"  (click)="editar(element.numCia)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="eliminar">
+            <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="warn" class="btn-rojo" (click)="eliminar(element.numCia)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

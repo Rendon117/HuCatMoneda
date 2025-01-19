@@ -1,0 +1,132 @@
+<form #form="ngForm" (ngSubmit)="editar()" novalidate>
+    <div class="mb-3">
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>numCia</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="moneda.numCia"
+          name="numCia"
+          readonly
+        />
+      </mat-form-field>
+    </div>
+  
+    <div class="mb-3">
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>claveMoneda</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="moneda.claveMoneda"
+          name="claveMoneda"
+          required
+          
+        />
+        <mat-error *ngIf="form.controls['claveMoneda']?.invalid && form.controls['claveMoneda']?.touched">
+          El campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+    </div>
+  
+    <div class="mb-3">
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>descripcion</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="moneda.descripcion"
+          name="descripcion"
+          required
+        />
+        <mat-error *ngIf="form.controls['descripcion']?.invalid && form.controls['descripcion']?.touched">
+            El campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="mb-3">
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>simbolo</mat-label>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="moneda.simbolo"
+            name="simbolo"
+            required
+          />
+          <mat-error *ngIf="form.controls['simbolo']?.invalid && form.controls['simbolo']?.touched">
+              El campo es obligatorio
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+
+      <div class="mb-3">
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>abreviacion</mat-label>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="moneda.abreviacion"
+            name="abreviacion"
+            required
+          />
+          <mat-error *ngIf="form.controls['abreviacion']?.invalid && form.controls['abreviacion']?.touched">
+              El campo es obligatorio
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+
+
+      <div class="mb-3">
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>monedaCorriente</mat-label>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="moneda.monedaCorriente"
+            name="monedaCorriente"
+            required
+          />
+          <mat-error *ngIf="form.controls['monedaCorriente']?.invalid && form.controls['monedaCorriente']?.touched">
+              El campo es obligatorio
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+
+
+      <div class="mb-3">
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>status</mat-label>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="moneda.status"
+            name="status"
+            required
+          />
+          <mat-error *ngIf="form.controls['status']?.invalid && form.controls['status']?.touched">
+              El campo es obligatorio
+          </mat-error>
+        </mat-form-field>
+      </div>
+    
+  
+    <button
+      mat-raised-button
+      class="btn-verde"
+      color="primary"
+      [disabled]="form.invalid"
+      style="margin-right: 10px;"
+    >
+      <mat-icon>save</mat-icon> Guardar</button>
+    <button mat-raised-button class="btn-rojo" color="warn" (click)="cancelar()">
+      <mat-icon>cancel</mat-icon> Regresar
+    </button>
+  </form>
+  
